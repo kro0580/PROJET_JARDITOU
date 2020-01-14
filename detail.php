@@ -12,7 +12,7 @@ include("entete.php"); // Inclusion de l'en-tête construite dans le fichier ent
 
  <div class="row">
 
-<form class="col-lg-12" action="php/produits_ajout_script.php" method="post"> <!-- Action vers le fichier php ou on écrite le script à exécuter en méthode POST -->
+<form class="col-lg-12" action="php/produits_ajout_script.php" method="post"> <!-- Action vers le fichier php ou on écrit le script à exécuter en méthode POST -->
 
 <div class="form-group">
     <label for="référence">Référence :</label>

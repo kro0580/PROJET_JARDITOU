@@ -3,7 +3,7 @@ include("entete.php");
     require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
  
     $db = connexionBase(); // Appel de la fonction de connexion
-    $pro_id = $_GET["pro_id"]; // POur récupérér la variable passée dans l'URL, il faut utiliser le tableau associatif $_GET
+    $pro_id = $_GET["pro_id"]; // Pour récupérér la variable passée dans l'URL, il faut utiliser le tableau associatif $_GET
     $requete = "SELECT * FROM produits WHERE pro_id=".$pro_id; // Requête SQL pour sélectionner les produits en fonction de leur ID
     $requete2 = "SELECT * FROM categories ORDER BY cat_id"; // Requête SQL pour sélectionner les catégories 
     $result = $db->query($requete); // Exécute la requête SQL et retourne un jeu de résultat

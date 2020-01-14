@@ -2,6 +2,8 @@
 
 $aErreur = [];
 
+// NOM
+
 if(empty ($_POST["nom"]))
 {
     $aErreur[] = "erreur1=true";
@@ -14,6 +16,8 @@ else
 {
     echo "Nom : ". $_POST["nom"] . "<br>";
 }
+
+// PRENOM
 
 if(empty ($_POST["prenom"]))
 {
@@ -28,6 +32,8 @@ else
     echo "Prénom : ". $_POST["prenom"] . "<br>";
 }
 
+// SEXE
+
 if(empty ($_POST["customRadio"]))
 {
     $aErreur[] = "erreur3=true";
@@ -36,6 +42,8 @@ else
 {
     echo "Vous êtes du sexe : ". $_POST["customRadio"] . "<br>";
 }
+
+// DATE DE NAISSANCE
 
 if(empty ($_POST["naissance"]))
 {
@@ -50,6 +58,8 @@ else
     echo "Vous êtes né(e) le : ". $_POST["naissance"] . "<br>";
 }
 
+// CODE POSTAL
+
 if(empty ($_POST["code_postal"]))
 {
     $aErreur[] = "erreur5=true";
@@ -62,6 +72,8 @@ else
 {
     echo "Votre code postal est le : ". $_POST["code_postal"] . "<br>";
 }
+
+// ADRESSE
 
 if(empty ($_POST["adresse"]))
 {
@@ -76,6 +88,8 @@ else
     echo "Votre adresse est : ". $_POST["adresse"] . "<br>";
 }
 
+// VILLE
+
 if(empty ($_POST["ville"]))
 {
     $aErreur[] = "erreur7=true";
@@ -89,6 +103,8 @@ else
     echo "Votre ville est : ". $_POST["ville"] . "<br>";
 }
 
+// EMAIL
+
 if(empty ($_POST["email"]))
 {
     $aErreur[] = "erreur8=true";
@@ -101,6 +117,8 @@ else
 {
     echo "Votre email est : ". $_POST["email"] . "<br>";
 }
+
+// DEMANDE
 
 if(empty ($_POST["demande"]))
 {
@@ -119,6 +137,8 @@ else
 {
     echo "Votre question est la suivante : ". $_POST["question"] . "<br>";
 }
+
+// ACCORD
 
 if(empty ($_POST["accord"]))
 {

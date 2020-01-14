@@ -15,7 +15,7 @@ include("entete.php");
                             
         <article class="article">
                     <h4>L'entreprise</h4>
-                    <p>Notre entreprise familiale met tout son savoir-faire à votre disposition dans le domaine du jardin et du paysagisme.</p>
+                    <p id="entreprise">Notre entreprise familiale met tout son savoir-faire à votre disposition dans le domaine du jardin et du paysagisme.</p>
                     <p>Créée il y a 70 ans, notre entreprise vend fleurs, arbustes, matériel à main et motorisés.</p>
                     <p>Implantés à Amiens, nous intervenons dans tout le département de la Somme : Albert, Doullens, Péronne, Abbeville, Corbie.</p>
         </article>
@@ -38,8 +38,8 @@ include("entete.php");
         <!-- COLONNE DROITE -->
         
         <!-- Ecran mobile : 1 colonne et disparition de la colonne de droite Ecran moyen : 6 colonnes et Ecran large : 4 colonnes -->
-        <aside class="d-none d-sm-block col-md-6 col-lg-4 colonne">
-                    <h3>[ COLONNE DROITE ]</h3>
+        <aside id="div1" class="d-none d-sm-block col-md-6 col-lg-4 colonne">
+                    <h3>[ COLONNE DROITE ]</h3> 
                     <p class="droite">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis!</p>
         </aside>
         

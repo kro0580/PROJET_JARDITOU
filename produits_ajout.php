@@ -20,12 +20,31 @@ $date = date("d-m-Y H:i:s");
 
 <div class="form-group">
     <label for="référence">Référence :</label>
-    <input type="text" class="form-control" name="reference" id="reference"> <!-- Le name et l'id doivent être identiques --> 
+    <input type="text" class="form-control" name="reference" id="reference" required> <!-- Le name et l'id doivent être identiques --> 
+    <span id="alert12"></span>
+    <span id="reference_manquante"></span>
 </div>
+<?php
+    
+                                if (isset($_GET["erreur1"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >La référence n'est pas renseignée</div>
+                                    <?php
+                                }
+                                else if (isset($_GET["erreur1b"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-warning" >Le format de la référence n'est pas correct</div>
+                                    <?php
+                                }
+    
+?>
 
 <div class="form-group">
     <label for="pro_cat_id">Catégorie :</label>
     <select class="custom-select" name="pro_cat_id" id="pro_cat_id">
+    <option value="">-- Veuillez sélectionner une catégorie --</option> 
     <?php
     foreach($categories as $c) // Permet l'affichage du menu déroulant pour obtenir la liste des catégories
     {
@@ -34,34 +53,110 @@ $date = date("d-m-Y H:i:s");
         <?php
     }
     ?>
-    
-</select>
+    </select>
+    <span id="alert13"></span> 
+    <span id="categorie_manquante"></span>
 </div>
+<?php 
+                                if (isset($_GET["erreur2"]))
+                                {
+                                    ?>
+                                    <div class="alert alert-danger">La catégorie n'est pas renseignée</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="libellé">Libellé :</label>   
-    <input type="text" class="form-control" name="libelle" id="libelle">  
+    <input type="text" class="form-control" name="libelle" id="libelle">
+    <span id="alert14"></span>
+    <span id="libelle_manquant"></span> 
 </div>
+<?php
+    
+                                if (isset($_GET["erreur3"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >Le libellé n'est pas renseigné</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="description">Description :</label>
-    <input type="text" class="form-control" name="description" id="description">   
+    <input type="text" class="form-control" name="description" id="description">
+    <span id="alert15"></span>
+    <span id="description_manquante"></span>    
 </div>
+<?php
+    
+                                if (isset($_GET["erreur4"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >La description n'est pas renseignée</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="prix">Prix :</label> 
-    <input type="text" class="form-control" name="prix" id="prix">     
+    <input type="text" class="form-control" name="prix" id="prix">
+    <span id="alert16"></span>
+    <span id="prix_manquant"></span>       
 </div>
+<?php
+    
+                                if (isset($_GET["erreur5"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >Le prix n'est pas renseigné</div>
+                                    <?php
+                                }
+                                else if (isset($_GET["erreur5b"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-warning" >Le format du prix n'est pas correct</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="stock">Stock :</label>  
-    <input type="text" class="form-control" name="stock" id="stock">  
+    <input type="text" class="form-control" name="stock" id="stock">
+    <span id="alert17"></span>
+    <span id="stock_manquant"></span>    
 </div>
+<?php
+    
+                                if (isset($_GET["erreur6"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >Le stock n'est pas renseigné</div>
+                                    <?php
+                                }
+                                else if (isset($_GET["erreur6b"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-warning" >Le format du stock n'est pas correct</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="couleur">Couleur :</label>
     <input type="text" class="form-control" name="couleur" id="couleur">   
+    <span id="alert18"></span>
+    <span id="couleur_manquante"></span>   
 </div>
+<?php
+    
+                                if (isset($_GET["erreur7"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >La couleur n'est pas renseignée</div>
+                                    <?php
+                                }
+?>
 
 
 <p>Produit bloqué ? :</p>
@@ -77,6 +172,18 @@ $date = date("d-m-Y H:i:s");
 </div>
 
 </div><br>
+<span id="alert19"></span>
+<span id="bloque_manquant"></span>
+    
+                        <?php
+    
+                                if (isset($_GET["erreur8"]))
+                                {
+                                    ?>
+                                    <div class = "alert alert-danger" >Vous devez cocher une des deux cases</div>
+                                    <?php
+                                }
+?>
 
 <div class="form-group">
     <label for="ajout">Date d'ajout :</label>
@@ -84,7 +191,9 @@ $date = date("d-m-Y H:i:s");
 </div>
 
 <div class="form-group">
-    <input type="submit" class="btn btn-success" value="Envoyer" id="bouton_envoi">
+    <!-- Quand on clique sur le bouton retour on affiche le tableau -->
+    <a href="tableau.php" class="btn btn-dark m-0">Retour</a>
+    <input type="submit" class="btn btn-success" value="Envoyer" id="bouton_envoi2">
     <input type="reset" class="btn btn-danger" value="Annuler">
 </div>
 
@@ -93,3 +202,8 @@ $date = date("d-m-Y H:i:s");
 <?php
 include("pieddepage.php");
 ?>
+<!-- Script JavaScript -->
+<!-- <script src="js\ajout_script.js"></script> -->
+
+<!-- Script jQuery -->
+<script src="jquery\ajout_script.js"></script>

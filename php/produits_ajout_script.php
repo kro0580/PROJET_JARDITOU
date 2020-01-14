@@ -36,6 +36,122 @@ if($InsertIsOk){
 else{
     $message = "Echec de l'insertion";
 }
+
+// GESTION DES MESSAGES D'ERREUR
+
+// Initialisation d'un tableau d'erreur
+
+$aErreur = [];
+
+// REFERENCE
+
+if(empty ($_POST["reference"]))
+{
+    $aErreur[] = "erreur1=true";
+}
+else if(!preg_match("/^[A-zA-ZñéèîïÉÈÎÏ0-9][A-zA-Zñéèêàçîï0-9]+([-'\s][A-zA-ZñéèîïÉÈÎÏ0-9][A-zA-Zñéèêàçîï0-9]+)?$/",($_POST["reference"])))
+{
+    $aErreur[] = "erreur1b=true";
+}
+else
+{
+    echo "Référence : ". $_POST["reference"] . "<br>";
+}
+
+// CATEGORIE
+
+if (empty($_POST["pro_cat_id"])) 
+{
+
+    $aErreur[] = "erreur2=true"; 
+}
+else
+{
+    echo "Catégorie =". $_POST["pro_cat_id"]."<br>";
+}
+
+// LIBELLE
+
+if(empty ($_POST["libelle"]))
+{
+    $aErreur[] = "erreur3=true";
+}
+else
+{
+    echo "Libellé : ". $_POST["libelle"] . "<br>";
+}
+
+// DESCRIPTION
+
+if(empty ($_POST["description"]))
+{
+    $aErreur[] = "erreur4=true";
+}
+else
+{
+    echo "Description : ". $_POST["description"] . "<br>";
+}
+
+// PRIX
+
+if(empty ($_POST["prix"]))
+{
+    $aErreur[] = "erreur5=true";
+}
+else if(!preg_match("/^[0-9]+$/",($_POST["prix"])))
+{
+    $aErreur[] = "erreur5b=true";
+}
+else
+{
+    echo "Prix : ". $_POST["prix"] . "<br>";
+}
+
+// STOCK
+
+if(empty ($_POST["stock"]))
+{
+    $aErreur[] = "erreur6=true";
+}
+else if(!preg_match("/^[0-9]+$/",($_POST["stock"])))
+{
+    $aErreur[] = "erreur6b=true";
+}
+else
+{
+    echo "Prix : ". $_POST["stock"] . "<br>";
+}
+
+// COULEUR
+
+if(empty ($_POST["couleur"]))
+{
+    $aErreur[] = "erreur7=true";
+}
+else
+{
+    echo "Couleur : ". $_POST["couleur"] . "<br>";
+}
+
+// PRODUIT BLOQUE
+
+if( ! isset ($_POST["bloque"]))
+{
+    $aErreur[] = "erreur8=true";
+}
+else
+{
+    echo "Produit bloqué : ". $_POST["bloque"] . "<br>";
+}
+
+
+// Initialisation d'une condition pour que toutes les erreurs apparaissent en même temps
+if (!empty($aErreur)) // Si le tableau n'est pas vide
+{
+    $sUrl = implode("&", $aErreur); // Alors on regroupe toutes les erreurs
+    header("Location:../produits_ajout.php?".$sUrl); // On affiche les erreurs dans le formulaire formulaire.php
+    exit; // Arrêt de la condition
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +164,6 @@ else{
 </head>
 <body>
     <h1>Ajout du produit</h1>
-    <p><?php echo $message; ?></p> <!-- Affichage du message confirmant l'insertion du produit ou l'échec d'insertion
+    <p><?php echo $message; ?></p> <!-- Affichage du message confirmant l'insertion du produit ou l'échec d'insertion -->
 </body>
 </html>

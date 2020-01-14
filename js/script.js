@@ -30,26 +30,27 @@ function f_valid()
     // ? est un symbole qui indique que le caractère qui le précède peut apparaître 0 ou 1 fois //
     var prenom_v = /^[A-zA-ZñéèîïÉÈÎÏ][A-zA-Zñéèêàçîï]+([-'\s][A-zA-ZñéèîïÉÈÎÏ][A-zA-Zñéèêàçîï]+)?$/;
     
-    var sexe = document.getElementById("sexe");
+    var sexe_ma = document.getElementById("sexe_ma");
+    var sexe_fe = document.getElementById("sexe_fe");
     var sexe_m = document.getElementById("sexe_manquant");
 
     var naissance = document.getElementById("naissance").valueAsDate;
     var naissance_m = document.getElementById("naissance_manquante");
-    var naissance_v = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
+    // var naissance_v = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
     // Pour vérifier la présence de données, il faut utiliser la propriété validity de l'objet Element //
     // Pour vérifier qu'un champ n'est pas vide, il faut utiliser la propriété valueMissing qui renvoie true si un champ possédant un attribut required est vide //
     // Dans le cas où valueMissing renvoie true, il faut bloquer le formulaire avec preventDefault() et renvoyer un message d'erreur //
     // preventDefault() est une méthode de l'objet Event qui va annuler le déclenchement d'un évènement si celui-ci est annulable //
 
-    var code_postal = document.getElementById("code_postal");
-    var code_postal_m = document.getElementById("code_postal_manquant");
-    // On demande à ce que le code postal comprenne 5 chiffres entre 0 et 9 //
-    var code_postal_v = /^[0-9]{5}$/;
-    
     var adresse = document.getElementById("adresse");
     var adresse_m = document.getElementById("adresse_manquante");
     // * est un symbole qui indique que le caractère qui le précède peut apparaître 0, 1 ou plusieurs fois //
     var adresse_v = /([a-zA-Z,\. ]*)?([a-zA-Z]*)/;
+    
+    var code_postal = document.getElementById("code_postal");
+    var code_postal_m = document.getElementById("code_postal_manquant");
+    // On demande à ce que le code postal comprenne 5 chiffres entre 0 et 9 //
+    var code_postal_v = /^[0-9]{5}$/;
     
     var ville = document.getElementById("ville");
     var ville_m = document.getElementById("ville_manquante");
@@ -71,6 +72,9 @@ function f_valid()
 
     // element.validity.valueMissing renvoie un objet de type Boolean. Si une valeur n'a pas été entré dans un champs de saisie requis //
     // event.preventDefault() annule l'évènement si il est annulable, ce qui signifie que l'action par défaut qui appartient à l'évènement ne se produira pas. Ici il empêchera de soumettre le formulaire //
+    
+    // NOM
+    
     if(nom.validity.valueMissing)
     {
         event.preventDefault();
@@ -81,7 +85,7 @@ function f_valid()
         nom_m.style.padding = "10px";
     }
 // Ensuite on vérifie la qualité des données //
-    else if(nom_v.test(nom.value) == false)
+    else if(nom_v.test(nom.value) == false) // nom.value fait appel à l'ID du formulaire
     {
         event.preventDefault();
         nom_m.textContent = "Le format pour le nom est incorrect";
@@ -98,6 +102,7 @@ function f_valid()
         nom_m.style.padding = "10px";
     }
     
+    // PRENOM
 
     if(prenom.validity.valueMissing)
     {
@@ -125,8 +130,9 @@ function f_valid()
         prenom_m.style.padding = "10px";
     }
 
+    // SEXE
 
-    if(sexe.validity.valueMissing)
+    if((!sexe_ma.checked && !sexe_fe.checked))
     {
         event.preventDefault();
         sexe_m.textContent = "Veuillez sélectionner une des deux cases";
@@ -142,6 +148,8 @@ function f_valid()
         sexe_m.style.textAlign = "center";
         sexe_m.style.padding = "10px";
     }
+
+    // DATE DE NAISSANCE
 
     if(naissance == null || naissance.getFullYear() < 1900 || naissance.getFullYear() >= 2019) 
     {
@@ -160,6 +168,7 @@ function f_valid()
         naissance_m.style.padding = "10px";
     }
 
+    // CODE POSTAL
 
     if(code_postal.validity.valueMissing)
     {
@@ -187,6 +196,7 @@ function f_valid()
         code_postal_m.style.padding = "10px";
     }
 
+    // ADRESSE
 
     if(adresse.validity.valueMissing)
     {
@@ -214,6 +224,7 @@ function f_valid()
         adresse_m.style.padding = "10px";
     }
 
+    // VILLE
 
     if(ville.validity.valueMissing)
     {
@@ -241,6 +252,7 @@ function f_valid()
         ville_m.style.padding = "10px";
     }
 
+    // EMAIL
 
     if(email.validity.valueMissing)
     {
@@ -268,6 +280,7 @@ function f_valid()
         email_m.style.padding = "10px";
     }
 
+    // SUJET
 
     if(sujet.validity.valueMissing)
     {
@@ -286,6 +299,7 @@ function f_valid()
         sujet_m.style.padding = "10px";
     }
 
+    // QUESTION
 
     if(question.validity.valueMissing)
     {
@@ -304,6 +318,7 @@ function f_valid()
         question_m.style.padding = "10px";
     }
 
+    // ACCORD
 
     if(customCheck1.validity.valueMissing)
     {
@@ -321,6 +336,7 @@ function f_valid()
         customCheck1_m.style.textAlign = "center";
         customCheck1_m.style.padding = "10px";
     }
+
 }
 
 validation.addEventListener("click", f_valid);

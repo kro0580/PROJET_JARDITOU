@@ -1,6 +1,6 @@
 <!-- Découpage pour avoir le pied de page uniquement -->
 <footer class="row">
-            <ul>
+            <ul class="p-0">
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Horaires</a></li>
                 <li><a href="#">Plan du site</a></li>

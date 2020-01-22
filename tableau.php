@@ -58,12 +58,20 @@ if ($result->rowCount() == 0)
 while ($row = $result->fetch(PDO::FETCH_OBJ)) // Renvoi de l'enregistrement sous forme d'un tableau
 // on débute une boucle while : tant qu'un enregistrement est présent dans la variable $result, on va afficher des informations. La présence d'un enregistrement est vérifiée grâce à la fonction fetch(PDO::FETCH_OBJ) qui lit le premier enregistrement trouvé par la requête SQL, puis le supprime puis lit le suivant et ainsi de suite... Quand il n'y a plus d'enregistrement disponible, elle renvoie la valeur 0, ce qui provoque l'arrêt de la boucle. Il est possible de remplacer l'instruction while par foreach.
 {
+
+/*if (strlen($row->pro_photo) <= 4)
+{
+    $image_src = $row->pro_id.".".$row->pro_photo;
+} else {
+    $image_src = $row->pro_photo;
+}*/
+
 ?>
     <tr>
-    <td><img src ="images/jarditou_photos/<?=$row->pro_id.".".$row->pro_photo?>" width= "100" height= "auto" class="text-center align-middle"></td>
+    <td><img src ="images/jarditou_photos/<?=$row->pro_photo?>" width= "100" height= "auto" class="text-center align-middle"></td>
     <td class="text-center align-middle"><?= $row->pro_id ?> </td>
     <td class="text-center align-middle"> <?= $row->pro_ref ?></td>
-    <td class="text-center align-middle"><a href="detail.php?pro_id=<?= $row->pro_id ?>" title="libelle" id="link_dark"> <?= $row->pro_libelle ?> </a></td>
+    <td class="text-center align-middle"><a href="detail.php?pro_id=<?= $row->pro_id ?>" title="libelle" id="link_dark" style= "color: #4169FE; text-decoration: underline" > <?= $row->pro_libelle ?> </a></td>
     <td class="text-center align-middle"> <?= $row->pro_prix ?> €</td>
     <td class="text-center align-middle"> <?= $row->pro_stock ?> </td>
     <td class="text-center align-middle"> <?= $row->pro_couleur ?> </td>

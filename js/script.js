@@ -84,7 +84,7 @@ function f_valid()
         nom_m.style.textAlign = "center";
         nom_m.style.padding = "10px";
     }
-// Ensuite on vérifie la qualité des données //
+    // Ensuite on vérifie la qualité des données //
     else if(nom_v.test(nom.value) == false) // nom.value fait appel à l'ID du formulaire
     {
         event.preventDefault();

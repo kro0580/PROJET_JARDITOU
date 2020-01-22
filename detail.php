@@ -10,9 +10,14 @@ include("entete.php"); // Inclusion de l'en-tête construite dans le fichier ent
     
 ?>
 
- <div class="row">
+<div class="row">
 
 <form class="col-lg-12" action="php/produits_ajout_script.php" method="post"> <!-- Action vers le fichier php ou on écrit le script à exécuter en méthode POST -->
+
+<div class="text-center">
+
+<img src="images/jarditou_photos/<?=$produit->pro_photo?>" width="300" alt="produit"> <!-- Pour ajouter la photo du produit : width="300 permet de redimensionner la photo et en n'indiquant qu'un seul paramètre le navigateur se charge de calculer le deuxième c'est à dire height en conservant les proportions de départ -->
+</div>
 
 <div class="form-group">
     <label for="référence">Référence :</label>

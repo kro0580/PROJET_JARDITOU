@@ -2,7 +2,6 @@ var validation2 = document.getElementById("bouton_envoi2");
 
 function a_valid()
 {
-
     var reference = document.getElementById("reference");
     var reference_m = document.getElementById("reference_manquante");
     var reference_v = /(^[A-Z]{2}[-][0-9]{2})$/;
@@ -31,7 +30,7 @@ function a_valid()
     var bloque_oui = document.getElementById("bloque_oui");
     var bloque_non = document.getElementById("bloque_non");
     var bloque_m = document.getElementById("bloque_manquant");
-
+    
     // REFERENCE
     
     if(reference.value == "")

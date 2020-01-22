@@ -1,6 +1,6 @@
 function verif() 
 {     
-     // Récupère la valeur saisie dans le champ input      
+     // Récupère la valeur saisie dans le champ input     
      var reference = $("#reference").val();
      var reference_v = /(^[A-Z]{2}[-][0-9]{2})$/;
      var categorie = $("#pro_cat_id").val();

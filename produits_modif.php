@@ -19,7 +19,7 @@ include("entete.php");
 
  <div class="row">
 
-<form class="col-lg-12" action="php/produits_modif_script.php" method="post">
+<form class="col-lg-12" action="php/produits_modif_script.php" method="post" enctype="multipart/form-data">
 <input type="hidden" name="pro_id" value="<?php echo $pro_id; ?>">
 <div class="form-group">
     <label for="référence">Référence :</label>
@@ -89,6 +89,14 @@ include("entete.php");
 </div>
 
 </div><br>
+
+<!-- TELECHARGEMENT IMAGE -->
+
+<p>Photo du produit :</p>
+
+<input type="hidden" name="MAX_FILE_SIZE" value="104857600" />
+    
+<p><input type="file" name="fichier" id="fichier"></p>
 
 <div class="form-group">
     <label for="ajout">Date d'ajout :</label> 

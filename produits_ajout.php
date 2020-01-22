@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if(isset($_SESSION['User']))
+{
+    echo 'Bienvenue ' . $_SESSION['User']. '<br/>';
+}
+
 include("entete.php");
 require "connexion_bdd.php";
 $db = connexionBase();
@@ -11,16 +18,11 @@ $date = date("d-m-Y H:i:s");
 
 <div class="row">
 
-<form class="col-lg-12" action="php/produits_ajout_script.php" method="post">
-
-<!--<div class="form-group">
-    <label for="id">ID :</label>
-    <select name="pro_id" id="pro_id"></select>
-</div>-->
+<form class="col-lg-12" action="php/produits_ajout_script.php" method="post" enctype="multipart/form-data">
 
 <div class="form-group">
     <label for="référence">Référence :</label>
-    <input type="text" class="form-control" name="reference" id="reference" required> <!-- Le name et l'id doivent être identiques --> 
+    <input type="text" class="form-control" name="reference" id="reference"> <!-- Le name et l'id doivent être identiques --> 
     <span id="alert12"></span>
     <span id="reference_manquante"></span>
 </div>
@@ -185,6 +187,14 @@ $date = date("d-m-Y H:i:s");
                                 }
 ?>
 
+<!-- TELECHARGEMENT IMAGE -->
+
+<p>Photo du produit :</p>
+
+<input type="hidden" name="MAX_FILE_SIZE" value="104857600" />
+    
+<p><input type="file" name="fichier" id="fichier"></p> 
+
 <div class="form-group">
     <label for="ajout">Date d'ajout :</label>
     <input type="text" class="form-control" id="ajout" name="ajout" value ="<?=$date?>" readonly>  <!-- On récupère la date du jour : value ="<?=$date?> que l'on met en readonly pour empêcher toute modification -->
@@ -193,7 +203,7 @@ $date = date("d-m-Y H:i:s");
 <div class="form-group">
     <!-- Quand on clique sur le bouton retour on affiche le tableau -->
     <a href="tableau.php" class="btn btn-dark m-0">Retour</a>
-    <input type="submit" class="btn btn-success" value="Envoyer" id="bouton_envoi2">
+    <input type="submit" class="btn btn-success" value="Ajouter" id="bouton_envoi2">
     <input type="reset" class="btn btn-danger" value="Annuler">
 </div>
 

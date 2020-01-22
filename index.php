@@ -1,51 +1,58 @@
-<!-- Page Index -->
 <?php
 include("entete.php");
 ?>
 
-    <!-- CONTENU DE MA PAGE -->
- 
-        <div class="row">
-    
-        <!-- Ecran moyen : 6 colonnes et Ecran large : 8 colonnes -->
-        <section class="col-md-6 col-lg-8">
-        
-                    <h1>Accueil</h1>
-                    <hr>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="card bg-dark mt-5 mb-5">
+                        <div class="card-title bg-primary text-white mt-5">
+                            <h3 class="text-center py-3">Connexion</h3>
+                        </div>
+
+                        <?php
+                            if(@$_GET['Empty']==true)
+                            {
+
                             
-        <article class="article">
-                    <h4>L'entreprise</h4>
-                    <p id="entreprise">Notre entreprise familiale met tout son savoir-faire à votre disposition dans le domaine du jardin et du paysagisme.</p>
-                    <p>Créée il y a 70 ans, notre entreprise vend fleurs, arbustes, matériel à main et motorisés.</p>
-                    <p>Implantés à Amiens, nous intervenons dans tout le département de la Somme : Albert, Doullens, Péronne, Abbeville, Corbie.</p>
-        </article>
-                    
-        <article class="article">
-                    <h4>Qualité</h4>
-                    <p>Nous mettons à votre disposition un service personnalisé, avec 1 seul interlocuteur durant tout votre projet.</p>
-                    <p>Vous serez séduit par notre expertise, nos compétences et notre sérieux.</p>
-        </article>
-                    
-        <article class="article">
-                    <h4>Devis gratuit</h4>
-                    <p>Vous pouvez bien sûr contacter pour de plus amples informations ou pour une demande d'intervention.</p>
-        </article>
-                    
-        <hr>
-                    
-        </section>
-        
-        <!-- COLONNE DROITE -->
-        
-        <!-- Ecran mobile : 1 colonne et disparition de la colonne de droite Ecran moyen : 6 colonnes et Ecran large : 4 colonnes -->
-        <aside id="div1" class="d-none d-sm-block col-md-6 col-lg-4 colonne">
-                    <h3>[ COLONNE DROITE ]</h3> 
-                    <p class="droite">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem amet accusantium repellat consequatur nostrum odit ipsam saepe iusto expedita quos, dolores laudantium, pariatur distinctio aut magni ipsa ipsum maiores officiis!</p>
-        </aside>
-        
+                        ?>
+                            <div class="alert-light text-danger text-center py-3"><?php echo $_GET['Empty']?></div>
+                        <?php
+                            }
+                        ?>
+
+                        <?php
+                            if(@$_GET['Invalid']==true)
+                            {
+
+                            
+                        ?>
+                            <div class="alert-light text-danger text-center py-3"><?php echo $_GET['Invalid']?></div>
+                        <?php
+                            }
+                        ?>
+
+                        <div class="card-body">
+
+                            <form action="process.php" method="post">
+
+                                <input type="text" name="nom" placeholder="Identifiant" class="form-control mb-3">
+                                <input type="password" name="mot_de_passe" placeholder="Mot de passe" class="form-control mb-3">
+                                <button class="btn btn-success mt-3" name="login">Se connecter</button>
+
+                            </form>
+
+                        </div>
+                    </div>    
+                </div>    
+            </div>              
         </div>
 
-        <!-- PIED DE PAGE -->
+        <h5 class="text-center">Vous n'avez pas de compte ?</h5>
+        <h5 class="text-center"><a href="inscription.php" style= "color: #4169FE; text-decoration: underline">Inscrivez-vous</a></h5></br>    
+
+
 
 <?php
 include("pieddepage.php");

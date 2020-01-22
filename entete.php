@@ -48,8 +48,7 @@
 
   
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-      aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15" aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
   
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent15">
@@ -57,7 +56,7 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="accueil.php">Accueil <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="tableau.php">Tableau</a>
@@ -67,6 +66,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="produits_ajout.php">Ajouter un produit</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="deconnexion.php?logout">Déconnexion</a>
         </li>
       </ul>
       <!-- Links -->
@@ -80,6 +85,6 @@
     <!-- BANNIERE -->
     
     <!-- mb pour margin-bottom -->
-    <div class="row mb-2">
-    <img src="images\promotion.jpg" id="image" alt="Promotion sur les lames de terrasse" title="Promotion sur les lames de terrasse">
+    <div class="row">
+    <img src="images/promotion.jpg" id="image" alt="Promotion sur les lames de terrasse" title="Promotion sur les lames de terrasse">
     </div>

@@ -141,27 +141,27 @@ else
 if(password.validity.valueMissing)
 {
     event.preventDefault();
-    login_m.textContent = "Le champ login est vide";
-    login_m.style.color = "white";
-    login_m.style.background = "#F51308";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    password_m.textContent = "Le champ mot de passe est vide";
+    password_m.style.color = "white";
+    password_m.style.background = "#F51308";
+    password_m.style.textAlign = "center";
+    password_m.style.padding = "10px";
 }
-else if(login_v.test(login.value) == false)
+else if(password_v.test(password.value) == false)
 {
     event.preventDefault();
-    login_m.textContent = "Le format pour le login est incorrect"
-    login_m.style.color = "white";
-    login_m.style.background = "#F51308";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    password_m.textContent = "Le format pour le mot de passe est incorrect"
+    password_m.style.color = "white";
+    password_m.style.background = "#F51308";
+    password_m.style.textAlign = "center";
+    password_m.style.padding = "10px";
 }
 else
 {
-    login_m.textContent = "✔";
-    login_m.style.background = "green";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    password_m.textContent = "✔";
+    password_m.style.background = "green";
+    password_m.style.textAlign = "center";
+    password_m.style.padding = "10px";
 }
 
 }

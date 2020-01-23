@@ -121,7 +121,7 @@ $date = date("d-m-Y H:i:s");
                         <div class="form-group">
                         <label for="password">Votre mot de passe<b>*</b> :</label>
                         <p style = "font-size : 12px"><em><b>(Il doit comporter de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux : $ @ % * + - _ !)</b></em></p>
-                            <input type="text" class="form-control" name="password" id="password" required>
+                            <input type="password" class="form-control" name="password" id="password" required>
                             <span id="password_manquant"></span>
                             <span id="alert5"></span>
                             <div class="valid-feedback">Champ Valide</div>
@@ -146,7 +146,7 @@ $date = date("d-m-Y H:i:s");
 
                         <div class="form-group">
                         <label for="conf_password">Confimation de votre mot de passe<b>*</b> :</label>
-                            <input type="text" class="form-control" name="conf_password" id="conf_password" required>
+                            <input type="password" class="form-control" name="conf_password" id="conf_password" required>
                             <span id="conf_password_manquant"></span>
                             <span id="alert6"></span>
                             <div class="valid-feedback">Champ Valide</div>

@@ -51,7 +51,7 @@ function verif()
      var question = $("#question").val();
      var accord = $("#customCheck1").prop('checked');
  
-     // Test si la valeur est bonne
+     // On teste si la valeur est bonne
 
      // NOM
 
@@ -60,7 +60,7 @@ function verif()
          var html = '<div class="alert alert-danger" role="alert">Votre nom doit être renseigné !</div>';
          $("#alert1").append(html);
      }
-     else if (nom_v.test(nom.value) == false) // nom.value fait appel à l'ID du formulaire et on test la valeur de la saisie que l'on compare avec la regex
+     else if (nom_v.test(nom.value) == false) // nom.value fait appel a l'ID du formulaire et on teste la valeur de la saisie que l'on compare avec la regex
      {
         var html = '<div class="alert alert-warning" role="alert">Format non valide !</div>';
         $("#alert1").append(html);
@@ -227,7 +227,7 @@ function verif()
          $("#alert11").append(html);
      } 
 
-     // Si aucun test n'a renvoyé faux, c'est qu'il n'y a pas d'erreurs, le script arrive ici, le formulaire est envoyé via submit()
+     // Si aucun test n'a renvoyé faux, c'est qu'il n'y a pas d'erreur, le script arrive ici, le formulaire est envoyé via submit()
      document.forms[0].submit();   
 }
 

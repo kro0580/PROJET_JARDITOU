@@ -94,9 +94,9 @@ $date = date("d-m-Y H:i:s");
                         ?>
 
                         <div class="form-group">
-                        <label for="login">Votre login<b>*</b> :</label>
-                            <input type="text" class="form-control" name="login" id="login" required>
-                            <span id="login_manquant"></span>
+                        <label for="identifiant">Votre login<b>*</b> :</label>
+                            <input type="text" class="form-control" name="identifiant" id="identifiant" required>
+                            <span id="identifiant_manquant"></span>
                             <span id="alert4"></span>
                             <div class="valid-feedback">Champ Valide</div>
                             <div class="invalid-feedback">Merci de saisir votre login</div>
@@ -119,7 +119,8 @@ $date = date("d-m-Y H:i:s");
                         ?>
 
                         <div class="form-group">
-                        <label for="login">Votre mot de passe<b>*</b> :</label>
+                        <label for="password">Votre mot de passe<b>*</b> :</label>
+                        <p style = "font-size : 12px"><em><b>(Il doit comporter de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux : $ @ % * + - _ !)</b></em></p>
                             <input type="text" class="form-control" name="password" id="password" required>
                             <span id="password_manquant"></span>
                             <span id="alert5"></span>
@@ -144,7 +145,7 @@ $date = date("d-m-Y H:i:s");
                         ?>
 
                         <div class="form-group">
-                        <label for="login">Confimation de votre mot de passe<b>*</b> :</label>
+                        <label for="conf_password">Confimation de votre mot de passe<b>*</b> :</label>
                             <input type="text" class="form-control" name="conf_password" id="conf_password" required>
                             <span id="conf_password_manquant"></span>
                             <span id="alert6"></span>
@@ -159,23 +160,23 @@ $date = date("d-m-Y H:i:s");
                                     <div class = "alert alert-danger" >Votre mot de passe n'a pas été confirmé</div>
                                     <?php
                                 }
-                                else if (isset($_GET["erreur5b"]))
+                                else if (isset($_GET["erreur6b"]))
                                 {
                                     ?>
-                                    <div class = "alert alert-warning" >Le format de votre mot de passe n'est pas correct</div>
+                                    <div class = "alert alert-warning" >Vos deux mots de passe sont différents</div>
                                     <?php
                                 }
     
                         ?>
 
                         <div class="form-group">
-                        <label for="login">Date d'inscription<b>*</b> :</label>
-                        <input type="text" class="form-control" name="inscription" value ="<?=$date?>" readonly id="inscription" required>
+                        <label for="login">Date d'inscription :</label>
+                        <input type="text" class="form-control" name="inscription" value ="<?=$date?>" readonly id="inscription">
                         </div>
 
                         <div class="form-group">
-                        <label for="login">Date de dernière connexion<b>*</b> :</label>
-                        <input type="text" class="form-control" name="der_connexion" id="der_connexion" required>
+                        <label for="login">Date de dernière connexion :</label>
+                        <input type="text" class="form-control" name="der_connexion" id="der_connexion">
                         </div>
 
                         <div class="form-group">
@@ -192,4 +193,7 @@ include("pieddepage.php");
 ?>
 
 <!-- Script JavaScript -->
-<script src="js\inscription_script.js"></script>
+<!-- <script src="js\inscription_script.js"></script> -->
+
+<!-- Script jQuery -->
+<script src="jquery\inscription_script.js"></script>

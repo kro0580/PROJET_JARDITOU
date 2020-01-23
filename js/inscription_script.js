@@ -14,15 +14,19 @@ function f_valid2()
     var email_m = document.getElementById("email_manquant");
     var email_v = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,252}\.[a-z]{2,4}$/;
 
-    var login = document.getElementById("login");
-    var login_m = document.getElementById("login_manquant");
-    var login_v = /^[a-zA-Z0-9]+$/;
+    var identifiant = document.getElementById("login");
+    var identifiant_m = document.getElementById("login_manquant");
+    var identifiant_v = /^[a-zA-Z0-9]+$/;
 
     var password = document.getElementById("password");
     var password_m = document.getElementById("password_manquant");
     var password_v = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
     // Mot de passe qui doit comporter de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux: $ @ % * + - _ !, aucun autre caractère possible: pas de & ni de { par exemple) 
 
+    var conf_password = document.getElementById("conf_password");
+    var conf_password_m = document.getElementById("conf_password_manquant");
+    var conf_password_v = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/;
+    // Mot de passe qui doit comporter de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre, au moins un de ces caractères spéciaux: $ @ % * + - _ !, aucun autre caractère possible: pas de & ni de { par exemple)
 // NOM
     
 if(nom.validity.valueMissing)
@@ -110,30 +114,30 @@ else
 
 // LOGIN
 
-if(login.validity.valueMissing)
+if(identifiant.validity.valueMissing)
 {
     event.preventDefault();
-    login_m.textContent = "Le champ login est vide";
-    login_m.style.color = "white";
-    login_m.style.background = "#F51308";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    identifiant_m.textContent = "Le champ login est vide";
+    identifiant_m.style.color = "white";
+    identifiant_m.style.background = "#F51308";
+    identifiant_m.style.textAlign = "center";
+    identifiant_m.style.padding = "10px";
 }
-else if(login_v.test(login.value) == false)
+else if(identifiant_v.test(identifiant.value) == false)
 {
     event.preventDefault();
-    login_m.textContent = "Le format pour le login est incorrect"
-    login_m.style.color = "white";
-    login_m.style.background = "#F51308";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    identifiant_m.textContent = "Le format pour le login est incorrect"
+    identifiant_m.style.color = "white";
+    identifiant_m.style.background = "#F51308";
+    identifiant_m.style.textAlign = "center";
+    identifiant_m.style.padding = "10px";
 }
 else
 {
-    login_m.textContent = "✔";
-    login_m.style.background = "green";
-    login_m.style.textAlign = "center";
-    login_m.style.padding = "10px";
+    identifiant_m.textContent = "✔";
+    identifiant_m.style.background = "green";
+    identifiant_m.style.textAlign = "center";
+    identifiant_m.style.padding = "10px";
 }
 
 // PASSWORD
@@ -162,6 +166,43 @@ else
     password_m.style.background = "green";
     password_m.style.textAlign = "center";
     password_m.style.padding = "10px";
+}
+
+// CONFIRMATION PASSWORD
+
+if(conf_password.validity.valueMissing)
+{
+    event.preventDefault();
+    conf_password_m.textContent = "Le champ confirmation du mot de passe est vide";
+    conf_password_m.style.color = "white";
+    conf_password_m.style.background = "#F51308";
+    conf_password_m.style.textAlign = "center";
+    conf_password_m.style.padding = "10px";
+}
+else if(conf_password_v.test(conf_password.value) == false)
+{
+    event.preventDefault();
+    conf_password_m.textContent = "Le format pour la confirmation du mot de passe est incorrect"
+    conf_password_m.style.color = "white";
+    conf_password_m.style.background = "#F51308";
+    conf_password_m.style.textAlign = "center";
+    conf_password_m.style.padding = "10px";
+}
+else if(conf_password.value !== password.value)
+{
+    event.preventDefault();
+    conf_password_m.textContent = "Les deux mots de passe sont différents"
+    conf_password_m.style.color = "white";
+    conf_password_m.style.background = "#F51308";
+    conf_password_m.style.textAlign = "center";
+    conf_password_m.style.padding = "10px"; 
+}
+else
+{
+    conf_password_m.textContent = "✔";
+    conf_password_m.style.background = "green";
+    conf_password_m.style.textAlign = "center";
+    conf_password_m.style.padding = "10px";
 }
 
 }

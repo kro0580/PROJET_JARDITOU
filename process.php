@@ -2,24 +2,29 @@
 
 // Connexion à la page de connexion avec insertion de l'identifiant et du mot de passe
 session_start();
-require_once('connexion_script.php');
+require_once('connexion_bdd.php');
+
+$db = connexionBase();
 
     if(isset($_POST['login']))
     {
-        var_dump($_POST);
-        if(empty($_POST['nom']) || empty($_POST['mot_de_passe']))
+        if(empty($_POST['mail']) || empty($_POST['mot_de_passe']))
         {
             header("location:index.php?Empty= Merci de remplir ces champs");
         }
         else
         {
-            $query="SELECT * FROM users WHERE nom='".$_POST['nom']."' AND mot_de_passe='".$_POST['mot_de_passe']."'";
-            $result=mysqli_query($con, $query);
+            $query="SELECT * FROM users WHERE mail='".$_POST['mail']."'";
+            $result=$db->query($query);
 
-            if(mysqli_fetch_assoc($result))
+            if($result)
             {
-                $_SESSION['User']=$_POST['nom'];
+                $user = $result->fetch(PDO::FETCH_OBJ); 
+                if (password_verify($_POST['mot_de_passe'], $user->mot_de_passe))
+                {
+                $_SESSION['User']=$_POST['mail'];
                 header("location:produits_ajout.php");
+                }
             }
             else
             {
@@ -27,6 +32,7 @@ require_once('connexion_script.php');
             }
         }
     }
+    
     else
     {
         echo 'La connexion a échoué';

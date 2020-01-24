@@ -37,7 +37,7 @@ include("entete.php");
 
                             <form action="process.php" method="post">
 
-                                <input type="text" name="nom" placeholder="Identifiant" class="form-control mb-3">
+                                <input type="text" name="mail" placeholder="Email" class="form-control mb-3">
                                 <input type="password" name="mot_de_passe" placeholder="Mot de passe" class="form-control mb-3">
                                 <button class="btn btn-success mt-3" name="login">Se connecter</button>
 

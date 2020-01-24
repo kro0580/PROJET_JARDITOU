@@ -6,6 +6,10 @@ $db = connexionBase();
 date_default_timezone_set('Europe/Paris'); // Pour récupérer l'heure locale
 $date = date("Y-m-d H:i:s");
 
+$password = $_POST['password'];
+
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
 $pdoStat = $db ->prepare("INSERT INTO users(nom, prenom, mail, identifiant, mot_de_passe, date_inscription, der_connexion)
 VALUES(:nom, :prenom, :mail, :identifiant, :mot_de_passe, '".$date."', '".$date."')");
 
@@ -13,12 +17,13 @@ $pdoStat->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
 $pdoStat->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
 $pdoStat->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
 $pdoStat->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
-$pdoStat->bindValue(':mot_de_passe', $_POST['password'], PDO::PARAM_STR);
+$pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
 
 $InsertIsOk = $pdoStat ->execute();
 
-if($InsertIsOk){
-    header("Location: ../accueil.php")
+if($InsertIsOk)
+{
+    header("Location: ../accueil.php");
 }
 else{
     $message = "Echec de l'insertion";

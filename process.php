@@ -4,7 +4,7 @@
 session_start();
 require_once('connexion_bdd.php');
 
-$db = connexionBase();
+$db = connexionBase(); // Appel de la fonction de connexion à la BDD
 
     if(isset($_POST['login']))
     {
@@ -20,7 +20,7 @@ $db = connexionBase();
             if($result)
             {
                 $user = $result->fetch(PDO::FETCH_OBJ); 
-                if (password_verify($_POST['mot_de_passe'], $user->mot_de_passe))
+                if (password_verify($_POST['mot_de_passe'], $user->mot_de_passe)) // Vérifier que le mot de passe saisi par l'utilisateur est le même que celui crypté stocké en BDD
                 {
                 $_SESSION['User']=$_POST['mail'];
                 header("location:produits_ajout.php");

@@ -8,7 +8,7 @@ $db = connexionBase(); // Appel de la fonction de connexion à la BDD
 
     if(isset($_POST['login']))
     {
-        if(empty($_POST['mail']) || empty($_POST['mot_de_passe']))
+        if(empty($_POST['mail']) || empty($_POST['mot_de_passe'])) // Vérifie les conditions
         {
             header("location:index.php?Empty= Merci de remplir ces champs");
         }

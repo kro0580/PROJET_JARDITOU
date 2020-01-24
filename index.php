@@ -39,6 +39,7 @@ include("entete.php");
 
                                 <input type="text" name="mail" placeholder="Email" class="form-control mb-3">
                                 <input type="password" name="mot_de_passe" placeholder="Mot de passe" class="form-control mb-3">
+                                <p style= "color: white; font-size: 14px">Mot de passe perdu ?<a href="#">Cliquez ici</a></p>
                                 <button class="btn btn-success mt-3" name="login">Se connecter</button>
 
                             </form>

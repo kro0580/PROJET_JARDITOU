@@ -1,13 +1,22 @@
 <!-- Page Index -->
 <?php
+session_start();
+
 include("entete.php");
+
+if(isset($_SESSION['User']))
+{
+    echo 'Bienvenue ' . $_SESSION['User']. '<br/>'. '<br/>';
+}
 ?>
+
 
     <!-- CONTENU DE MA PAGE -->
  
         <div class="row">
     
         <!-- Ecran moyen : 6 colonnes et Ecran large : 8 colonnes -->
+
         <section class="col-md-6 col-lg-8">
         
                     <h1>Accueil</h1>
@@ -44,6 +53,9 @@ include("entete.php");
         </aside>
         
         </div>
+
+        <form method="POST" action="envoi_mail.php">
+        <input type="submit" value="Envoyer un mail" name="mailform">
 
         <!-- PIED DE PAGE -->
 

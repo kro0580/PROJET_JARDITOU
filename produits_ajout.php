@@ -1,10 +1,4 @@
 <?php
-session_start();
-
-if(isset($_SESSION['User']))
-{
-    echo 'Bienvenue ' . $_SESSION['User']. '<br/>';
-}
 
 include("entete.php");
 require "connexion_bdd.php";

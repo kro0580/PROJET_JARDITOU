@@ -23,7 +23,11 @@ $db = connexionBase(); // Appel de la fonction de connexion à la BDD
                 if (password_verify($_POST['mot_de_passe'], $user->mot_de_passe)) // Vérifier que le mot de passe saisi par l'utilisateur est le même que celui crypté stocké en BDD
                 {
                 $_SESSION['User']=$_POST['mail'];
-                header("location:produits_ajout.php");
+                if($user->role=='admin')
+                {
+                $_SESSION["Admin"]=$user->role;
+                }
+                header("location:accueil.php");
                 }
             }
             else

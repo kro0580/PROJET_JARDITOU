@@ -64,9 +64,15 @@
         <li class="nav-item">
           <a class="nav-link" href="formulaire.php">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="produits_ajout.php">Ajouter un produit</a>
-        </li>
+        <?php
+        if(isset($_SESSION["Admin"]))
+        {
+            ?>
+            <li class="nav-item">
+            <a class="nav-link" href="produits_ajout.php">Ajouter un produit</a></li>
+            <?php
+        }
+        ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php">Connexion</a>
         </li>
@@ -74,6 +80,7 @@
           <a class="nav-link" href="deconnexion.php?logout">Déconnexion</a>
         </li>
       </ul>
+
       <!-- Links -->
   
     </div>

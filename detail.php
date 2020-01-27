@@ -1,12 +1,14 @@
-<?php    
+<?php 
+
+session_start();
 include("entete.php"); // Inclusion de l'en-tête construite dans le fichier entete.php
-    require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
+require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
  
-    $db = connexionBase(); // Appel de la fonction de connexion
-    $pro_id = $_GET["pro_id"];
-    $requete = "SELECT * FROM produits INNER JOIN categories ON categories.cat_id = produits.pro_cat_id WHERE pro_id=".$pro_id; // Construction de la requête SQL
-    $result = $db->query($requete); // $db->query($requete) revient à appeler la fonction query() de l'objet $db en lui passant la requête SQL en argument. Le résultat $db->query() est stocké dans un objet $result.
-    $produit = $result->fetch(PDO::FETCH_OBJ); // Renvoi de l'enregistrement sous forme d'un objet
+$db = connexionBase(); // Appel de la fonction de connexion
+$pro_id = $_GET["pro_id"];
+$requete = "SELECT * FROM produits INNER JOIN categories ON categories.cat_id = produits.pro_cat_id WHERE pro_id=".$pro_id; // Construction de la requête SQL
+$result = $db->query($requete); // $db->query($requete) revient à appeler la fonction query() de l'objet $db en lui passant la requête SQL en argument. Le résultat $db->query() est stocké dans un objet $result.
+$produit = $result->fetch(PDO::FETCH_OBJ); // Renvoi de l'enregistrement sous forme d'un objet
     
 ?>
 
@@ -82,10 +84,18 @@ include("entete.php"); // Inclusion de l'en-tête construite dans le fichier ent
 <div class="form-group">
     <!-- Quand on clique sur le bouton retour on affiche le tableau -->
     <a href="tableau.php" class="btn btn-dark m-0">Retour</a>
-    <!-- Quand on clique sur le bouton modifier on exécute le script du fichier sur lequel on fait un lien et on récupère l'ID avec ?pro_id=<?= $produit->pro_id?> -->
-    <a href="produits_modif.php?pro_id=<?= $produit->pro_id?>" class="btn btn-warning m-0">Modifier</a>
-    <!-- Quand on clique sur le bouton supprimer on exécute le script du fichier sur lequel on fait un lien et on récupère l'ID avec ?pro_id=<?= $produit->pro_id?> -->
-    <a href="php/produits_supprimes_script.php?pro_id=<?= $produit->pro_id?>" class="btn btn-danger m-0" onclick="return confirm('Etes-vous certain(e) de vouloir supprimer le produit ?')">Supprimer</a>
+    
+    <?php
+    if(isset($_SESSION["Admin"]))
+        {
+        ?>
+        <!-- Quand on clique sur le bouton modifier on exécute le script du fichier sur lequel on fait un lien et on récupère l'ID avec ?pro_id=<?= $produit->pro_id?> -->
+         <a href="produits_modif.php?pro_id=<?= $produit->pro_id?>" class="btn btn-warning m-0">Modifier</a>
+         <!-- Quand on clique sur le bouton supprimer on exécute le script du fichier sur lequel on fait un lien et on récupère l'ID avec ?pro_id=<?= $produit->pro_id?> -->
+        <a href="php/produits_supprimes_script.php?pro_id=<?= $produit->pro_id?>" class="btn btn-danger m-0" onclick="return confirm('Etes-vous certain(e) de vouloir supprimer le produit ?')">Supprimer</a>
+        <?php
+        }
+    ?>
 </div>
 
 </form>

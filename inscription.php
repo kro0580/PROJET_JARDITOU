@@ -175,11 +175,6 @@ $date = date("d-m-Y H:i:s");
                         </div>
 
                         <div class="form-group">
-                        <label for="login">Date de dernière connexion :</label>
-                        <input type="text" class="form-control" name="der_connexion" id="der_connexion">
-                        </div>
-
-                        <div class="form-group">
                         <input type="submit" class="btn btn-success" value="Envoyer" id="bouton_envoi2">
                         <input type="reset" class="btn btn-danger" value="Annuler">
                         </div>

@@ -10,14 +10,15 @@ $password = $_POST['password'];
 
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-$pdoStat = $db ->prepare("INSERT INTO users(nom, prenom, mail, identifiant, mot_de_passe, date_inscription, der_connexion)
-VALUES(:nom, :prenom, :mail, :identifiant, :mot_de_passe, '".$date."', '".$date."')");
+$pdoStat = $db ->prepare("INSERT INTO users(nom, prenom, mail, identifiant, mot_de_passe, date_inscription, acces)
+VALUES(:nom, :prenom, :mail, :identifiant, :mot_de_passe, '".$date."', :acces)");
 
 $pdoStat->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
 $pdoStat->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
 $pdoStat->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
 $pdoStat->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
 $pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
+$pdoStat->bindValue(':acces', "user", PDO::PARAM_STR);
 
 $InsertIsOk = $pdoStat ->execute();
 
@@ -132,5 +133,61 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
     header("Location:../inscription.php?".$sUrl); // On affiche les erreurs dans le formulaire formulaire.php
     exit; // Arrêt de la condition
 }
+
+// Envoi mail de confirmation sur MAILHOG
+// Télécharger MailHog_windows_amd64.exe à l'adresse https://github.com/mailhog/MailHog/releases
+// Aller dans php.ini de Laragon - ligne 1047 et 1067
+//[mail function] http://php.net/smtp SMTP = localhost http://php.net/smtp-port smtp_port = 1025
+// sendmail_path="C:/laragon/mailhog/mailhog.exe sendmail" (mettre l'application mailhog dans le dosser mailhog que l'on doit créer)
+// mail.log = "C:/laragon/logs/mails.log" (journal des mails envoyés)
+// Aller sur Mailhog à l'adresse suivante : http://localhost:8025/# - puis cliquer sur connected
+
+// fonction mail(destinataire, objet, message, entêtes, paramètres) : tableau avec des paramètres
+if($_POST) // Si on envoi quelque chose alors cela déclenche l'envoi du mail
+{
+    $aHeaders = array('MIME-Version' => '1.0','Content-Type' => 'text/html; charset=utf-8','From' => 'Dave Loper <dave.loper@afpa.fr>','Reply-To' => 'Service commercial <commerciaux@jarditou.com>','X-Mailer' => 'PHP/' . phpversion());
+
+    $message = "<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset='utf-8'>
+<title>Mon premier mail HTML</title>   
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+<style>
+html 
+{
+   font-size: 100%;
+}
+ 
+body 
+{
+    font-size: 1rem; /* Si html fixé à 100%, 1rem = 16px = taille par défaut de police de Firefox ou Chrome */
+}
+</style>  
+</head>
+<body>
+<div class='container'>
+    <div class='row'>
+        <div class='col-12'>
+          <h1>Bienvenu parmi nous</h1>
+      </div>    
+    </div>   
+    <div class='row'>
+        <div class='col-12'>
+          Félicitations, votre inscription a bien été prise en compte
+      </div>    
+    </div>   
+</div> 
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
+</body>
+</html>";
+}
+
+mail("dave.loper@afpa.com",
+"Confirmation d'inscription",
+$message,
+$aHeaders);
 
 ?>

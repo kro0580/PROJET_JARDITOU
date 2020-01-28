@@ -1,7 +1,7 @@
 <?php
 
 // Connexion à la page de connexion avec insertion de l'identifiant et du mot de passe
-session_start();
+session_start(); // A mettre chaque fois que l'on utilise $_SESSION
 require_once('connexion_bdd.php');
 
 $db = connexionBase(); // Appel de la fonction de connexion à la BDD
@@ -23,9 +23,9 @@ $db = connexionBase(); // Appel de la fonction de connexion à la BDD
                 if (password_verify($_POST['mot_de_passe'], $user->mot_de_passe)) // Vérifier que le mot de passe saisi par l'utilisateur est le même que celui crypté stocké en BDD
                 {
                 $_SESSION['User']=$_POST['mail'];
-                if($user->role=='admin')
+                if($user->acces=='admin')
                 {
-                $_SESSION["Admin"]=$user->role;
+                $_SESSION["Admin"]=$user->acces;
                 }
                 header("location:accueil.php");
                 }

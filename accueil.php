@@ -54,9 +54,6 @@ if(isset($_SESSION['User']))
         
         </div>
 
-        <form method="POST" action="envoi_mail.php">
-        <input type="submit" value="Envoyer un mail" name="mailform">
-
         <!-- PIED DE PAGE -->
 
 <?php

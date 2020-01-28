@@ -197,7 +197,7 @@ include("entete.php");
                         
                         <div class="form-group">
                         <label for="email">Email<b>*</b> :</label>
-                            <input type="text" class="form-control" placeholder="dave.loper@afpa.fr" name="email" id="email" required>
+                            <input type="email" class="form-control" placeholder="dave.loper@afpa.fr" name="email" id="email" required>
                             <span id="alert8"></span>
                             <span id="email_manquant"></span>
                             <div class="valid-feedback">Champ Valide</div>

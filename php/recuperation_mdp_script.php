@@ -21,31 +21,24 @@ else
 
 require "../connexion_bdd.php";
 $db = connexionBase();
-$requete = "SELECT * FROM users WHERE mail=$recup_mail";
-var_dump($requete);
+$result = $db->query('SELECT * FROM users WHERE mail="'.$recup_mail.'"');
+$users = $result->fetchAll(PDO::FETCH_OBJ);
 
-$result = $db->query($requete);
-var_dump($result);
-//$mailExist = $pdoStat ->execute();
-$users = $result->fetch(PDO::FETCH_OBJ);
-
-var_dump($users);
-
-if($mailExist){
+if($users){
     //$message = "Le produit a été rajouté dans la base de données";
     $message = "L'adresse mail existe";
 
     // Initialisation d'une condition pour que toutes les erreurs apparaissent en même temps
-    // if (!empty($aErreur)) // Si le tableau n'est pas vide
-    // {
-        // $sUrl = implode("&", $aErreur); // Alors on regroupe toutes les erreurs
-        // header("Location:../recuperation_mdp.php?".$sUrl); // On affiche les erreurs dans le formulaire formulaire.php
-        // exit; // Arrêt de la condition
-    // }
+    if (!empty($aErreur)) // Si le tableau n'est pas vide
+    {
+        $sUrl = implode("&", $aErreur); // Alors on regroupe toutes les erreurs
+        header("Location:../recuperation_mdp.php?".$sUrl); // On affiche les erreurs dans le formulaire formulaire.php
+        exit; // Arrêt de la condition
+    }
 
     if($_POST) // Si on envoi quelque chose alors cela déclenche l'envoi du mail
     {
-        $aHeaders = array('MIME-Version' => '1.0','Content-Type' => 'text/html; charset=utf-8','From' => $mailExist,'Reply-To' => 'Service commercial <commerciaux@jarditou.com>','X-Mailer' => 'PHP/' . phpversion());
+        $aHeaders = array('MIME-Version' => '1.0','Content-Type' => 'text/html; charset=utf-8','From' => $users[0]->nom . " " . $users[0]->prenom,'Reply-To' => 'Service commercial <commerciaux@jarditou.com>','X-Mailer' => 'PHP/' . phpversion());
 
         $message2 = "<!DOCTYPE html>
     <html lang='fr'>

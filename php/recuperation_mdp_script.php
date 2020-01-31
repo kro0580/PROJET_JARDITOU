@@ -26,7 +26,7 @@ $users = $result->fetchAll(PDO::FETCH_OBJ);
 
 if($users){
     //$message = "Le produit a été rajouté dans la base de données";
-    $message = "L'adresse mail existe";
+    $message = "Vous allez recevoir un mail pour changer votre mot de passe";
 
     // Initialisation d'une condition pour que toutes les erreurs apparaissent en même temps
     if (!empty($aErreur)) // Si le tableau n'est pas vide
@@ -68,7 +68,7 @@ if($users){
         </div>   
         <div class='row'>
             <div class='col-12'>
-           <a href='new_mdp.php'>Veuillez cliquer ici pour réinitialiser votre mot de passe</a>
+           <a href='http://localhost/Caro/PHP/PDO/JARDITOU/new_mdp.php'>Veuillez cliquer ici pour réinitialiser votre mot de passe</a>
             </div>    
         </div>   
     </div> 

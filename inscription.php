@@ -15,7 +15,7 @@ $date = date("d-m-Y H:i:s");
 
 <div class="form-group">
                         <label for="nom">Votre nom<b>*</b> :</label>
-            <!-- required pour rendre la saisie obligatoire - A remettre pour le JS une fois que l'on a testé le PHP-->
+            <!-- required pour rendre la saisie obligatoire - A remettre pour le JS une fois que l'on a testé le PHP -->
                             <input type="text" class="form-control" name="nom" id="nom" required>
                             <span id="nom_manquant"></span> <!-- Affichage du message d'erreur JS dans le formulaire -->
                             <span id="alert1"></span> <!-- Affichage du message d'erreur jQuery dans le formulaire -->

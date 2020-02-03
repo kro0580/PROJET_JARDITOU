@@ -1,6 +1,6 @@
 <!-- Découpage pour avoir l'en-tête uniquement -->
 <?php
-session_start();
+session_start(); // Permet d'afficher les boutons de la barre de navigation en fonction d'un admin ou d'un simple utilisateur
 ?>
 <!DOCTYPE html>
 <html lang="fr">

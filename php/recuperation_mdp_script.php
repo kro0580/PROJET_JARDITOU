@@ -22,9 +22,10 @@ else
 require "../connexion_bdd.php";
 $db = connexionBase();
 $result = $db->query('SELECT * FROM users WHERE mail="'.$recup_mail.'"');
-$users = $result->fetchAll(PDO::FETCH_OBJ);
+$users = $result->fetchAll(PDO::FETCH_OBJ); // $users récupère tous les élements de la table users
 
-if($users){
+if($users)
+{
     //$message = "Le produit a été rajouté dans la base de données";
     $message = "Vous allez recevoir un mail pour changer votre mot de passe";
 
@@ -68,7 +69,7 @@ if($users){
         </div>   
         <div class='row'>
             <div class='col-12'>
-           <a href='http://localhost/Caro/PHP/PDO/JARDITOU/new_mdp.php'>Veuillez cliquer ici pour réinitialiser votre mot de passe</a>
+           <a href='http://localhost/Caro/PHP/PDO/JARDITOU/new_mdp.php?email=$recup_mail'>Veuillez cliquer ici pour réinitialiser votre mot de passe</a>
             </div>    
         </div>   
     </div> 
@@ -79,12 +80,26 @@ if($users){
     }
 
     mail($recup_mail,"Réinitialisation du mot de passe", $message2, $aHeaders);
-
-    echo $message;
-
+    
 }
+
 else
-{
-    $message = "L'adresse mail n'existe pas";
-}
+    {
+        $message = "L'adresse mail n'existe pas";
+    }
+
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Validation du mot de passe</title>
+</head>
+<body>
+    <h1>Modification du mot de passe</h1>
+    <p><?php echo $message; ?></p>
+</body>
+</html>

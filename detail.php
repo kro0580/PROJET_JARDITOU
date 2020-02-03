@@ -1,6 +1,5 @@
 <?php 
 
-session_start();
 include("entete.php"); // Inclusion de l'en-tête construite dans le fichier entete.php
 require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
  

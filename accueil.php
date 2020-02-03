@@ -1,6 +1,5 @@
 <!-- Page Index -->
 <?php
-session_start();
 
 include("entete.php");
 

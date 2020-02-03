@@ -39,6 +39,7 @@ include("entete.php");
     <div class="valid-feedback">Champ Valide</div>
     <div class="invalid-feedback">Merci de confirmer votre nouveau mot de passe</div>
 
+    <?php $valeur=$_GET['email']; echo '<input type="mail" hidden class="form-control" name="mail" id="mail" value="'.$valeur.'">'; ?> <!-- input mail caché pour permettre la récupération du mail dans le new_mdp_script.php -->
     <?php
     
                                 if (isset($_GET["erreur2"]))

@@ -1,54 +1,4 @@
 <?php
-require "../connexion_bdd.php";
-$db = connexionBase();
-//$objetPdo = new PDO('mysql:host=localhost;charset=utf8;dbname=jarditou', 'root', '');
-date_default_timezone_set('Europe/Paris'); // Pour récupérer l'heure locale
-$date = date("Y-m-d H:i:s");
-//$pro_cat_id = $_POST["pro_cat_id"];
-
-// Requête SQL pour insérer les valeurs ajoutées dans le formulaire d'ajout
-$pdoStat = $db ->prepare("INSERT INTO produits(pro_ref, pro_cat_id, pro_libelle, pro_description, pro_prix, pro_stock, pro_couleur, pro_bloque, pro_d_ajout)
-VALUES(:pro_ref, :pro_cat_id, :pro_libelle, :pro_description, :pro_prix, :pro_stock, :pro_couleur, :pro_bloque, '".$date."')");
-
-$pdoStat->bindValue(':pro_ref', $_POST['reference'], PDO::PARAM_STR); // bindValue : Associe une valeur à un paramètre - $_POST['reference'] : on récupère le name du fichier produits_ajout.php
-$pdoStat->bindValue(':pro_cat_id', $_POST['pro_cat_id'], PDO::PARAM_STR);
-$pdoStat->bindValue(':pro_libelle', $_POST['libelle'], PDO::PARAM_STR);
-$pdoStat->bindValue(':pro_description', $_POST['description'], PDO::PARAM_STR);
-$pdoStat->bindValue(':pro_prix', $_POST['prix'], PDO::PARAM_STR);
-$pdoStat->bindValue(':pro_stock', $_POST['stock'], PDO::PARAM_STR);
-$pdoStat->bindValue(':pro_couleur', $_POST['couleur'], PDO::PARAM_STR);
-
-
-// Condition si le produit n'est pas bloqué alors cela affiche 0 ou NULL dans le tableau phpMyAdmin
-if ($_POST['bloque']==0) {
-    $bloque = NULL;
-} else if  ($_POST['bloque']==1) { // Si le produit est bloqué alors cela affiche 1 dans le tableau phpMyAdmin
-    $bloque = 1;
-}
-
-$pdoStat->bindValue(':pro_bloque', $bloque, PDO::PARAM_STR);
-
-$InsertIsOk = $pdoStat ->execute();
-
-if($InsertIsOk){
-    //$message = "Le produit a été rajouté dans la base de données";
-    $message = "Insertion réussie";
-}
-else{
-    $message = "Echec de l'insertion";
-}
-
-$new_id = (int)($db -> lastInsertId()); // En lien avec l'insertion d'image et le renommage du fichier qui sera l'ID
-
-// Récupération de l'extension du fichier
-$extension = substr (strrchr ($_FILES['fichier']['name'], "."), 1);
-$nouveauNom = $new_id.'.'.$extension;
-
-// Requête SQL pour récupérer le nouveau nom qui est l'ID
-$requete2 = $db ->prepare("UPDATE produits SET pro_photo=:nouveauNom WHERE pro_id=:pro_id");
-$requete2->bindValue(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
-$requete2->bindValue(':pro_id', $new_id, PDO::PARAM_STR);
-
 
 // GESTION DES MESSAGES D'ERREUR
 
@@ -156,6 +106,58 @@ else
 {
     echo "Produit bloqué : ". $_POST["bloque"] . "<br>";
 }
+
+// CONNEXION A LA BDD ET RECUPERATION DES INFORMATIONS AVEC DES REQUETES SQL
+
+require "../connexion_bdd.php";
+$db = connexionBase();
+//$objetPdo = new PDO('mysql:host=localhost;charset=utf8;dbname=jarditou', 'root', '');
+date_default_timezone_set('Europe/Paris'); // Pour récupérer l'heure locale
+$date = date("Y-m-d H:i:s");
+//$pro_cat_id = $_POST["pro_cat_id"];
+
+// Requête SQL pour insérer les valeurs ajoutées dans le formulaire d'ajout
+$pdoStat = $db ->prepare("INSERT INTO produits(pro_ref, pro_cat_id, pro_libelle, pro_description, pro_prix, pro_stock, pro_couleur, pro_bloque, pro_d_ajout)
+VALUES(:pro_ref, :pro_cat_id, :pro_libelle, :pro_description, :pro_prix, :pro_stock, :pro_couleur, :pro_bloque, '".$date."')");
+
+$pdoStat->bindValue(':pro_ref', $_POST['reference'], PDO::PARAM_STR); // bindValue : Associe une valeur à un paramètre - $_POST['reference'] : on récupère le name du fichier produits_ajout.php
+$pdoStat->bindValue(':pro_cat_id', $_POST['pro_cat_id'], PDO::PARAM_STR);
+$pdoStat->bindValue(':pro_libelle', $_POST['libelle'], PDO::PARAM_STR);
+$pdoStat->bindValue(':pro_description', $_POST['description'], PDO::PARAM_STR);
+$pdoStat->bindValue(':pro_prix', $_POST['prix'], PDO::PARAM_STR);
+$pdoStat->bindValue(':pro_stock', $_POST['stock'], PDO::PARAM_STR);
+$pdoStat->bindValue(':pro_couleur', $_POST['couleur'], PDO::PARAM_STR);
+
+
+// Condition si le produit n'est pas bloqué alors cela affiche 0 ou NULL dans le tableau phpMyAdmin
+if ($_POST['bloque']==0) {
+    $bloque = NULL;
+} else if  ($_POST['bloque']==1) { // Si le produit est bloqué alors cela affiche 1 dans le tableau phpMyAdmin
+    $bloque = 1;
+}
+
+$pdoStat->bindValue(':pro_bloque', $bloque, PDO::PARAM_STR);
+
+$InsertIsOk = $pdoStat ->execute();
+
+if($InsertIsOk){
+    //$message = "Le produit a été rajouté dans la base de données";
+    $message = "Insertion réussie";
+}
+else{
+    $message = "Echec de l'insertion";
+}
+
+$new_id = (int)($db -> lastInsertId()); // En lien avec l'insertion d'image et le renommage du fichier qui sera l'ID
+
+// Récupération de l'extension du fichier
+$extension = substr (strrchr ($_FILES['fichier']['name'], "."), 1);
+$nouveauNom = $new_id.'.'.$extension;
+
+// Requête SQL pour récupérer le nouveau nom qui est l'ID
+$requete2 = $db ->prepare("UPDATE produits SET pro_photo=:nouveauNom WHERE pro_id=:pro_id");
+$requete2->bindValue(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
+$requete2->bindValue(':pro_id', $new_id, PDO::PARAM_STR);
 
 // INSERTION IMAGE
 

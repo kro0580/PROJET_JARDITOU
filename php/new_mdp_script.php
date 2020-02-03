@@ -1,29 +1,5 @@
 <?php
 
-require "../connexion_bdd.php";
-$db = connexionBase();
-
-$password = $_POST['new_password'];
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-$recup_mail = $_POST['mail']; // $_POST['mail'] recupère le $valeur dans l'input caché mail dans new_mdp.php
-
-$pdoStat = $db->prepare("UPDATE users SET mot_de_passe='".$passwordHash."' WHERE mail='".$recup_mail."'");
-
-$pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
-$pdoStat->bindValue(':mail', $recup_mail, PDO::PARAM_STR);
-
-$InsertIsOk = $pdoStat ->execute();
-
-if($InsertIsOk)
-{
-    header("Location: ../index.php");
-   
-}
-else
-{
-    $message = "Echec de la modification du mot de passe";
-}
-
 $aErreur = [];
 
 // PASSWORD
@@ -65,6 +41,32 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
     exit; // Arrêt de la condition
 }
 
+// CONNEXION A LA BDD ET RECUPERATION DES INFORMATIONS AVEC DES REQUETES SQL
+
+require "../connexion_bdd.php";
+$db = connexionBase();
+
+$password = $_POST['new_password'];
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+$recup_mail = $_POST['mail']; // $_POST['mail'] recupère le $valeur dans l'input caché mail dans new_mdp.php
+
+$pdoStat = $db->prepare("UPDATE users SET mot_de_passe='".$passwordHash."' WHERE mail='".$recup_mail."'");
+
+$pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
+$pdoStat->bindValue(':mail', $recup_mail, PDO::PARAM_STR);
+
+$InsertIsOk = $pdoStat ->execute();
+
+if($InsertIsOk)
+{
+    header("Location: ../index.php");
+   
+}
+else
+{
+    $message = "Echec de la modification du mot de passe";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +75,7 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validation du nouveau mot de passe</title>
+    <title>Modification du mot de passe</title>
 </head>
 <body>
     <h1>Modification du mot de passe</h1>

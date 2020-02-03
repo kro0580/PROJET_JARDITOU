@@ -1,35 +1,5 @@
 <?php
 
-require "../connexion_bdd.php";
-$db = connexionBase();
-
-date_default_timezone_set('Europe/Paris'); // Pour récupérer l'heure locale
-$date = date("Y-m-d H:i:s");
-
-$password = $_POST['password'];
-
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-$pdoStat = $db ->prepare("INSERT INTO users(nom, prenom, mail, identifiant, mot_de_passe, date_inscription, acces)
-VALUES(:nom, :prenom, :mail, :identifiant, :mot_de_passe, '".$date."', :acces)");
-
-$pdoStat->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
-$pdoStat->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
-$pdoStat->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
-$pdoStat->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
-$pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
-$pdoStat->bindValue(':acces', "user", PDO::PARAM_STR);
-
-$InsertIsOk = $pdoStat ->execute();
-
-if($InsertIsOk)
-{
-    header("Location: ../accueil.php");
-}
-else{
-    $message = "Echec de l'insertion";
-}
-
 // GESTION DES MESSAGES D'ERREUR
 
 // Initialisation d'un tableau d'erreur
@@ -134,6 +104,38 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
     exit; // Arrêt de la condition
 }
 
+// CONNEXION A LA BDD ET RECUPERATION DES INFORMATIONS AVEC DES REQUETES SQL
+
+require "../connexion_bdd.php";
+$db = connexionBase();
+
+date_default_timezone_set('Europe/Paris'); // Pour récupérer l'heure locale
+$date = date("Y-m-d H:i:s");
+
+$password = $_POST['password'];
+
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+$pdoStat = $db ->prepare("INSERT INTO users(nom, prenom, mail, identifiant, mot_de_passe, date_inscription, acces)
+VALUES(:nom, :prenom, :mail, :identifiant, :mot_de_passe, '".$date."', :acces)");
+
+$pdoStat->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
+$pdoStat->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
+$pdoStat->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
+$pdoStat->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
+$pdoStat->bindValue(':mot_de_passe', $passwordHash, PDO::PARAM_STR);
+$pdoStat->bindValue(':acces', "user", PDO::PARAM_STR);
+
+$InsertIsOk = $pdoStat ->execute();
+
+if($InsertIsOk)
+{
+    header("Location: ../accueil.php");
+}
+else{
+    $message = "Echec de l'insertion";
+}
+
 // Envoi mail de confirmation sur MAILHOG
 // Télécharger MailHog_windows_amd64.exe à l'adresse https://github.com/mailhog/MailHog/releases
 // Aller dans php.ini de Laragon - ligne 1047 et 1067
@@ -145,9 +147,9 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
 // fonction mail(destinataire, objet, message, entêtes, paramètres) : tableau avec des paramètres
 if($_POST) // Si on envoi quelque chose alors cela déclenche l'envoi du mail
 {
-    $aHeaders = array('MIME-Version' => '1.0','Content-Type' => 'text/html; charset=utf-8','From' => 'Dave Loper <dave.loper@afpa.fr>','Reply-To' => 'Service commercial <commerciaux@jarditou.com>','X-Mailer' => 'PHP/' . phpversion());
+    $aHeaders = array('MIME-Version' => '1.0','Content-Type' => 'text/html; charset=utf-8','From' => $_POST['nom'] . " " . $_POST['prenom'],'Reply-To' => 'Service commercial <commerciaux@jarditou.com>','X-Mailer' => 'PHP/' . phpversion());
 
-    $message = "<!DOCTYPE html>
+    $message2 = "<!DOCTYPE html>
 <html lang='fr'>
 <head>
 <meta charset='utf-8'>
@@ -170,7 +172,7 @@ body
 <div class='container'>
     <div class='row'>
         <div class='col-12'>
-          <h1>Bienvenu parmi nous</h1>
+          <h1>Bienvenue parmi nous</h1>
       </div>    
     </div>   
     <div class='row'>
@@ -185,9 +187,20 @@ body
 </html>";
 }
 
-mail("dave.loper@afpa.com",
-"Confirmation d'inscription",
-$message,
-$aHeaders);
+mail($_POST['email'], "Confirmation d'inscription",$message2,$aHeaders);
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirmation d'inscription</title>
+</head>
+<body>
+    <h1>Confirmation d'inscription</h1>
+    <p><?php echo $message; ?></p>
+</body>
+</html>

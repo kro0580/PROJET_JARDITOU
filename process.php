@@ -5,9 +5,8 @@ session_start(); // A mettre chaque fois que l'on utilise $_SESSION
 require_once('connexion_bdd.php');
 
 $db = connexionBase(); // Appel de la fonction de connexion à la BDD
-var_dump($_POST); echo "<br>";
 
-    if(isset($_POST['login']))
+    if(isset($_POST['login'])) //$_POST['login'] récupère le name de l'input du bouton "Se connecter" dans le fichier index.php
     {
         if(empty($_POST['mail']) || empty($_POST['mot_de_passe'])) // Vérifie les conditions
         {
@@ -28,7 +27,7 @@ var_dump($_POST); echo "<br>";
                     {
                     $_SESSION['Admin']=$user->acces;
                     }
-                header("location:accueil.php");
+                    header("location:accueil.php");
                 }
                 else
                 {
@@ -46,7 +45,5 @@ var_dump($_POST); echo "<br>";
     {
         echo 'La connexion a échoué';
     }
-
-    var_dump($_POST);
 
 ?>

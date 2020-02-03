@@ -76,7 +76,9 @@ session_start(); // Permet d'afficher les boutons de la barre de navigation en f
             <?php
         }
         ?>
-        <li class="nav-item">
+      </ul>
+      <ul class="navbar-nav mr-3"> <!-- Permet de mettre "Connexion" et "Déconnexion" à droite dans la navbar -->
+      <li class="nav-item">
           <a class="nav-link" href="index.php">Connexion</a>
         </li>
         <li class="nav-item">

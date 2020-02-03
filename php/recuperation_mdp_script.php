@@ -19,6 +19,8 @@ else
     echo "Votre email est : ". $recup_mail . "<br>";
 }
 
+// CONNEXION A LA BDD ET RECUPERATION DES INFORMATIONS AVEC DES REQUETES SQL
+
 require "../connexion_bdd.php";
 $db = connexionBase();
 $result = $db->query('SELECT * FROM users WHERE mail="'.$recup_mail.'"');
@@ -96,10 +98,10 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validation du mot de passe</title>
+    <title>Récupération du mot de passe</title>
 </head>
 <body>
-    <h1>Modification du mot de passe</h1>
+    <h1>Récupération du mot de passe</h1>
     <p><?php echo $message; ?></p>
 </body>
 </html>

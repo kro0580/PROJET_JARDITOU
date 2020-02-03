@@ -1,5 +1,7 @@
 <?php
 
+// On détruit la session avec session_destroy()
+
 session_start();
 if(isset($_GET['logout']))
 {

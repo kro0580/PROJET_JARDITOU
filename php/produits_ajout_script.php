@@ -142,13 +142,12 @@ $InsertIsOk = $pdoStat ->execute();
 
 if($InsertIsOk){
     //$message = "Le produit a été rajouté dans la base de données";
+    $new_id = (int)($db -> lastInsertId()); // En lien avec l'insertion d'image et le renommage du fichier qui sera l'ID
     $message = "Insertion réussie";
 }
 else{
     $message = "Echec de l'insertion";
 }
-
-$new_id = (int)($db -> lastInsertId()); // En lien avec l'insertion d'image et le renommage du fichier qui sera l'ID
 
 // Récupération de l'extension du fichier
 $extension = substr (strrchr ($_FILES['fichier']['name'], "."), 1);
@@ -157,7 +156,7 @@ $nouveauNom = $new_id.'.'.$extension;
 // Requête SQL pour récupérer le nouveau nom qui est l'ID
 $requete2 = $db ->prepare("UPDATE produits SET pro_photo=:nouveauNom WHERE pro_id=:pro_id");
 $requete2->bindValue(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
-$requete2->bindValue(':pro_id', $new_id, PDO::PARAM_STR);
+$requete2->bindValue(':pro_id', $new_id, PDO::PARAM_INT);
 
 // INSERTION IMAGE
 
@@ -254,7 +253,7 @@ if (!empty($aErreur)) // Si le tableau n'est pas vide
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validation du produit</title>
+    <title>Ajout du produit</title>
 </head>
 <body>
     <h1>Ajout du produit</h1>

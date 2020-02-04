@@ -112,7 +112,7 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validation du produit</title>
+    <title>Modification du produit</title>
 </head>
 <body>
     <h1>Modification du produit</h1>

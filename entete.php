@@ -44,7 +44,7 @@ session_start(); // Permet d'afficher les boutons de la barre de navigation en f
     <!-- NAVIGATION -->
 
     <!--Navbar-->
-<nav class="row navbar-expand-sm">
+<nav class="row navbar-expand-sm navbar-dark">
 
 
     <!-- Navbar brand -->

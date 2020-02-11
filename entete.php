@@ -44,14 +44,14 @@ session_start(); // Permet d'afficher les boutons de la barre de navigation en f
     <!-- NAVIGATION -->
 
     <!--Navbar-->
-<nav class="row navbar-expand-sm navbar-dark">
+<nav class="row navbar-expand-sm">
 
 
     <!-- Navbar brand -->
 
   
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15" aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15" aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
   
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent15">
